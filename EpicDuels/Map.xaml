@@ -1,0 +1,100 @@
+﻿<Window x:Class="EpicDuels.Map"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EpicDuels"
+        mc:Ignorable="d"
+        Title="Map"
+        Height="768"
+        Width="1366"
+        WindowStyle="None">
+
+    <Window.Resources>
+        <Style TargetType="local:Map">
+            <Setter Property="Cursor" Value="Images\Background\cursor.cur"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="GameGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Background/tloD.jpg"/>
+        </Grid.Background>
+
+        <Grid x:Name="beginMessage" Style="{DynamicResource MessageGrid}">
+            
+            <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="48" TextElement.FontFamily="Resources/#Vinque" Height="148" Margin="0,0,0,30"
+                       Width="452" VerticalAlignment="Center">
+                       Twoja przygoda rozpoczyna się!
+            </TextBlock>
+
+            <Button Style="{DynamicResource MessageButton}" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="0,0,0,110" Content="Kontynuuj"
+                    Click="BeginMessage_Click"/>
+        </Grid>
+
+        <Grid x:Name="EndMessage" HorizontalAlignment="Center" Height="600"
+                VerticalAlignment="Center" Width="670" Visibility="Hidden">
+
+            <Grid.Background>
+                <ImageBrush ImageSource="Images/Background/oldPaper.png"/>
+            </Grid.Background>
+
+            <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="30" TextElement.FontFamily="Resources/#Vinque" Height="400" Margin="0,80,0,0"
+                       Width="452" VerticalAlignment="Top" FontWeight="Normal">
+                       Odczuwasz jak zmęczenie niemalże wgryza się w Twe kończyny doszczędnie odbierając siły. <LineBreak/><LineBreak/>
+                       Żądza posiadania potęgi przewyższa jednak wszelki ból.. <LineBreak></LineBreak><LineBreak></LineBreak>
+                       Szaleńczy umysł kieruje Cie ku palącego centrum ognia i siarki..
+            </TextBlock>
+
+            <Button Style="{DynamicResource MessageButton}" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="0,0,0,80" Content="Kontynuuj"
+                    Click="EndMessage_Click"/>
+        </Grid>
+
+        <Grid x:Name="MapGrid" HorizontalAlignment="Center" Height="600" Width="1200"
+              VerticalAlignment="Center" Visibility="Hidden">
+
+            <Grid.Background>
+                <ImageBrush ImageSource="Images/Background/mapBackground.jpg"/>
+            </Grid.Background>
+
+            <Grid Height="500" Width="500">
+
+                <Grid x:Name="LeftLocationGrid">
+                    <Button x:Name="leftLocationButton" Click="LeftLocationButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Polygon Stroke="Black" StrokeThickness="4" Points="0 250, 250 0,220 100, 240 140,230 250,270 350, 245 430, 250 500 ">
+                                    <Polygon.Fill>
+                                        <ImageBrush ImageSource="{Binding SourceUri}"/>
+                                    </Polygon.Fill>
+                                </Polygon>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <Grid x:Name="RightLocationGrid">
+                    <Button x:Name="rightLocationButton" Click="RightLocationButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Polygon Stroke="Black" StrokeThickness="4" Points="250 0,220 100, 240 140,230 250,270 350, 245 430, 250 500, 500, 250 ">
+                                    <Polygon.Fill>
+                                        <ImageBrush ImageSource="{Binding SourceUri}"/>
+                                    </Polygon.Fill>
+                                </Polygon>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </Grid>
+
+            <TextBlock HorizontalAlignment="Center" Margin="0,60,0,0" TextWrapping="Wrap" Text="WYBIERZ              LOKACJĘ"
+                       VerticalAlignment="Top" FontSize="80" FontFamily="Sylfaen" FontWeight="Bold" TextDecorations="{x:Null}"/>
+        </Grid>
+
+    </Grid>
+</Window>

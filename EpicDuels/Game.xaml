@@ -1,0 +1,1111 @@
+﻿<Window x:Class="EpicDuels.Game"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EpicDuels"
+        mc:Ignorable="d"
+        Title="start"
+        Height="768"
+        Width="1366"
+        WindowStyle="None">
+
+    <Window.Resources>
+        <Style TargetType="local:Game">
+            <Setter Property="Cursor" Value="Images\Background\cursor.cur"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Label}" x:Key="STUN">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="{Binding StunMargin}"></Setter>
+            <Setter Property="Visibility" Value="{Binding StunVisible}"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Grid>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" StrokeThickness="2" Stroke="White" Fill="Gray"/>
+                            <ContentPresenter Content="STUN" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Border}" x:Key="POISON">
+            <Setter Property="BorderBrush" Value="DarkGreen"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Margin" Value="{Binding PoisonMargin}"></Setter>
+            <Setter Property="Visibility" Value="{Binding PoisonVisible}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Images/Background/poison.jpg" Stretch="Uniform" Opacity="1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Grid}" x:Key="BURN">
+            <Setter Property="Visibility" Value="{Binding BurnVisible}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="{Binding PoisonMargin}"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Images/Background/burn.png" Stretch="Uniform"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Grid}" x:Key="SLOW">
+            <Setter Property="Visibility" Value="{Binding SlowVisible}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="{Binding SlowMargin}"></Setter>
+            <Setter Property="Opacity" Value="0.8"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Images/Background/slow.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Rectangle}" x:Key="HPindicator">
+            <Setter Property="Height" Value="{Binding HPindicator}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFC92222" Opacity="0.7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Label}" x:Key="HP">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="11"></Setter>
+            <Setter Property="FontFamily" Value="Sylfaen"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="Margin" Value="0,7,7,0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Grid Grid.Row="0">
+                            <Ellipse StrokeThickness="3" Stroke="Black">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Black" Offset="1"/>
+                                        <GradientStop Color="#FFB04141" Offset="0.549"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter Content="{Binding HP}" VerticalAlignment="Center"
+                                              HorizontalAlignment="Center" Margin="0,0,0,1">
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Label}" x:Key="Name">
+            <Setter Property="Grid.Row" Value="1"></Setter>
+            <Setter Property="FontFamily" Value="Sylfaen"></Setter>
+            <Setter Property="FontSize" Value="13"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush ImageSource="Images/background/cardName.jpg" Opacity="0.4"/>
+                            </Grid.Background>
+                            <ContentPresenter Content="{Binding Name}" HorizontalAlignment="Center"
+                                              VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="Potion">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontFamily" Value="Sylfaen"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="100" Height="100" HorizontalAlignment="Center">
+                            <Grid Margin="{TemplateBinding Margin}">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="{Binding BackgroundURL}"/>
+                                </Grid.Background>
+                            </Grid>
+                            <ContentPresenter Margin="75,65,0,0" Content="{Binding Count}"></ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.7"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Grid}" x:Key="EnemyGrid">
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"></Setter>
+            <Setter Property="Margin" Value="{Binding MarginCharacter}"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <RotateTransform Angle="10"/>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="AssignButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="2">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="{Binding SourceUri}"/>
+                            </Grid.Background>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.7"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Border}" x:Key="AssignBorder">
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Images/Background/weaponBackground.jpg"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="AssignClickText">
+            <Setter Property="Text" Value="KLIKNIJ"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontFamily" Value="Sylfaen"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="GameGrid">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Background/tloD.jpg"/>
+        </Grid.Background>
+
+        <TextBlock Text="{Binding LocationName}" FontSize="100" Foreground="Black" HorizontalAlignment="Center" FontFamily="Sylfaen"/>
+
+        <Grid x:Name="cardGrid" Width="890" Height="430" VerticalAlignment="Center" HorizontalAlignment="Center"
+              Visibility="Visible">
+
+            <Grid x:Name="heroGrid" HorizontalAlignment="Left" Height="350" Margin="{Binding MarginCharacter}"
+                  VerticalAlignment="Center" Width="240" RenderTransformOrigin="0.5,0.5">
+
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-10"/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+
+                <Grid Height="60" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Polygon Stroke="Black" StrokeThickness="2" Points="0 0 30 10 30 50 0 60" Fill="White"/>
+                    <TextBlock RenderTransformOrigin="0.5,0.5" Margin="-7,0,-17,13" 
+                           FontFamily="Sylfaen" FontWeight="Bold" FontSize="13" Text="attacks">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBlock Text="{Binding NumberAttacks}" FontSize="30" FontFamily="Sylfaen" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Margin="8,0,0,0"/>
+                </Grid>
+
+                <Border x:Name="heroBorder" BorderBrush="{Binding BorderColor}" BorderThickness="2" >
+                    <Border.Background>
+                        <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                    </Border.Background>
+
+                    <Grid>
+                        <Rectangle Width="5" HorizontalAlignment="Right">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFFFD76C" Offset="{Binding XPindicator_2}"/>
+                                    <GradientStop Color="White" Offset="{Binding XPindicator_1}"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}" Margin="0,0,5,0"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="320"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Background="White" Opacity="0.3"/>
+
+                            <Label Grid.Row="0" FontSize="14" HorizontalContentAlignment="Center" FontWeight="Bold"
+                                   FontFamily="Sylfaen" Content="{Binding HeroClassName}"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*"></RowDefinition>
+                                <RowDefinition Height="6.5*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Margin="0,-5,0,0">
+                                <Label Content="{Binding Level}" FontSize="50" Foreground="White" FontFamily="Sylfaen" FontWeight="Bold"/>
+                                <Label Content="{Binding Level}" FontSize="50" Foreground="Black" FontFamily="Sylfaen" />
+
+                                <Label x:Name="STUNhero" Style="{DynamicResource STUN}" Height="20" Width="50"/>
+
+                                <Border x:Name="POISONhero" Style="{DynamicResource POISON}" Height="27" Width="27">
+                                    <Grid Background="#FF00B809" Opacity="0.5"/>
+                                </Border>
+
+                                <Grid x:Name="BURNhero" Style="{DynamicResource BURN}" Height="27" Width="27"/>
+
+                                <Grid x:Name="SLOWhero" Style="{DynamicResource SLOW}" Width="27" Height="27"/>
+
+                                <Label Style="{DynamicResource HP}" Height="50" Width="50" FontSize="16" Margin="0,7,10,0"></Label>
+
+                            </Grid>
+
+                            <Label Style="{DynamicResource Name}" Grid.Row="2"/>
+
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid x:Name="SkillGrid_1" Grid.Row="1">
+                                <Border x:Name="Skill_1" BorderBrush="White" BorderThickness="2" CornerRadius="10"
+                                    Margin="5" Width="100" MouseLeftButtonUp="SelectSkill_1" Visibility="Hidden" >
+                                    <Border.Background>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="{Binding SkillEnabled}"/>
+                                        </RadialGradientBrush>
+                                    </Border.Background>
+                                    <Label x:Name="SkillLabel_1" Foreground="White" HorizontalAlignment="Center" FontFamily="Sylfaen" />
+                                </Border>
+                            </Grid>
+
+                            <Grid x:Name="SkillGrid_2" Grid.Row="1" Grid.Column="1" >
+                                <Border x:Name="Skill_2" BorderBrush="White" BorderThickness="2" CornerRadius="10"
+                                    Margin="5" Width="100" MouseLeftButtonUp="SelectSkill_2" Visibility="Hidden" >
+                                    <Border.Background>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="{Binding SkillEnabled}"/>
+                                        </RadialGradientBrush>
+                                    </Border.Background>
+                                    <Label x:Name="SkillLabel_2" Foreground="White" HorizontalAlignment="Center" FontFamily="Sylfaen"/>
+                                </Border>
+                            </Grid>
+
+                            <Grid x:Name="SkillGrid_3" Grid.Row="2">
+                                <Border x:Name="Skill_3" BorderBrush="White" BorderThickness="2" CornerRadius="10"
+                                    Margin="5" Width="100" MouseLeftButtonUp="SelectSkill_3" Visibility="Hidden">
+                                    <Border.Background>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="{Binding SkillEnabled}"/>
+                                        </RadialGradientBrush>
+                                    </Border.Background>
+                                    <Label x:Name="SkillLabel_3" Foreground="White" HorizontalAlignment="Center" FontFamily="Sylfaen"/>
+                                </Border>
+                            </Grid>
+
+                            <Grid x:Name="SkillGrid_4" Grid.Row="2" Grid.Column="1">
+                                <Border x:Name="Skill_4" BorderBrush="White" BorderThickness="2" CornerRadius="10"
+                                    Margin="5" Width="100" MouseLeftButtonUp="SelectSkill_4" Visibility="Hidden" >
+                                    <Border.Background>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="{Binding SkillEnabled}"/>
+                                        </RadialGradientBrush>
+                                    </Border.Background>
+                                    <Label x:Name="SkillLabel_4" Foreground="White" HorizontalAlignment="Center" FontFamily="Sylfaen"/>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid x:Name="oneAllEnemyGrid" Style="{StaticResource EnemyGrid}" Visibility="Visible" Height="350"
+                 VerticalAlignment="Center" Width="240" MouseLeftButtonUp="SelectOneEnemy">
+
+                <Label x:Name="STUNoneEnemy" Style="{DynamicResource STUN}" Height="20" Width="50"/>
+
+                <Border x:Name="POISONoneEnemy" Style="{DynamicResource POISON}" Height="27" Width="27">
+                    <Grid Background="#FF00B809" Opacity="0.5"/>
+                </Border>
+
+                <Grid x:Name="BURNoneEnemy" Style="{DynamicResource BURN}" Height="27" Width="27"/>
+                <Grid x:Name="SLOWoneEnemy" Style="{DynamicResource SLOW}" Width="27" Height="27"/>
+
+                <Grid x:Name="BossGrid" Height="60" Width="30" HorizontalAlignment="Right"
+                      VerticalAlignment="Center" Visibility="{Binding BossVisibility}">
+                    <Polygon Stroke="Black" StrokeThickness="2" Points="30 60 30 0 0 10 0 50" Fill="Gold"/>
+                    <TextBlock RenderTransformOrigin="0.5,0.5" Margin="0,0,-40,0" 
+                           FontFamily="Sylfaen" FontWeight="Bold" FontSize="16" Text="BOSS" HorizontalAlignment="Center">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </Grid>
+
+                <Border x:Name="oneEnemyBorder" BorderBrush="{Binding BorderColor}" BorderThickness="2">
+                    <Border.Background>
+                        <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                    </Border.Background>
+
+                    <Grid x:Name="oneEnemyGrid">
+
+                        <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Style="{DynamicResource HP}" Height="50" Width="50" FontSize="16"></Label>
+                            <Label Style="{DynamicResource Name}" FontSize="20"></Label>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid x:Name="twoAllEnemiesGrid" Visibility="Hidden">
+
+                <Grid x:Name="twoEnemiesGrid_1" Style="{StaticResource EnemyGrid}" Height="200"
+                        VerticalAlignment="Top" Width="140" MouseLeftButtonUp="SelectTwoEnemies_1">
+
+                    <Label x:Name="STUNtwoEnemies" Style="{DynamicResource STUN}" Width="35" Height="15" FontSize="8"/>
+
+                    <Border x:Name="POISONtwoEnemy_1" Style="{DynamicResource POISON}" Height="20" Width="20">
+                        <Grid Background="#FF00B809" Opacity="0.5"/>
+                    </Border>
+
+                    <Grid x:Name="BURNtwoEnemy_1" Style="{DynamicResource BURN}" Height="20" Width="20"/>
+                    <Grid x:Name="SLOWtwoEnemy_1" Style="{DynamicResource SLOW}" Width="20" Height="20"/>
+
+                    <Border x:Name="twoEnemiesBorder_1" BorderBrush="{Binding BorderColor}" BorderThickness="1.5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                        </Border.Background>
+
+                        <Grid>
+                            <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="7*"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Style="{DynamicResource HP}" Height="35" Width="35"></Label>
+                                <Label Style="{DynamicResource Name}"></Label>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="twoEnemiesGrid_2" Style="{StaticResource EnemyGrid}" Height="200"
+                        VerticalAlignment="Bottom" Width="140" MouseLeftButtonUp="SelectTwoEnemies_2">
+
+                    <Label x:Name="STUNtwoEnemy_1" Style="{DynamicResource STUN}" Width="35" Height="15" FontSize="8"/>
+
+                    <Border x:Name="POISONtwoEnemy_2" Style="{DynamicResource POISON}" Height="20" Width="20">
+                        <Grid Background="#FF00B809" Opacity="0.5"/>
+                    </Border>
+
+                    <Grid x:Name="BURNtwoEnemy_2" Style="{DynamicResource BURN}" Height="20" Width="20"/>
+
+                    <Grid x:Name="SLOWtwoEnemy_2" Style="{DynamicResource SLOW}" Width="20" Height="20"/>
+
+                    <Border x:Name="twoEnemiesBorder_2" BorderBrush="{Binding BorderColor}" BorderThickness="1.5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                        </Border.Background>
+                        <Grid>
+                            <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="7*"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Style="{DynamicResource HP}" Height="35" Width="35"></Label>
+                                <Label Style="{DynamicResource Name}"></Label>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="threeAllEnemiesGrid" Visibility="Hidden">
+
+                <Grid x:Name="threeEnemiesGrid_1" Style="{StaticResource EnemyGrid}" Height="200"
+                       VerticalAlignment="Top" Width="140" MouseLeftButtonUp="SelectThreeEnemies_1">
+
+                    <Label x:Name="STUNthreeEnemy_1" Style="{DynamicResource STUN}" Height="15" Width="35" FontSize="8"/>
+
+                    <Border x:Name="POISONthreeEnemy_1" Style="{DynamicResource POISON}" Height="20" Width="20">
+                        <Grid Background="#FF00B809" Opacity="0.5"/>
+                    </Border>
+
+                    <Grid x:Name="BURNthreeEnemy_1" Style="{DynamicResource BURN}" Height="20" Width="20"/>
+
+                    <Grid x:Name="SLOWthreeEnemy_1" Style="{DynamicResource SLOW}" Width="20" Height="20"/>
+
+                    <Border x:Name="threeEnemiesBorder_1" BorderBrush="{Binding BorderColor}" BorderThickness="1.5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                        </Border.Background>
+                        <Grid>
+                            <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}"/>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="6*"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Style="{DynamicResource HP}" Height="35" Width="35"></Label>
+                                <Label Style="{DynamicResource Name}"></Label>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="threeEnemiesGrid_2" Style="{StaticResource EnemyGrid}" Height="200"
+                        VerticalAlignment="Bottom" Width="140" MouseLeftButtonUp="SelectThreeEnemies_2">
+
+                    <Label x:Name="STUNthreeEnemy_2" Style="{DynamicResource STUN}" Height="15" Width="35" FontSize="8"/>
+
+                    <Border x:Name="POISONthreeEnemy_2" Style="{DynamicResource POISON}" Height="20" Width="20">
+                        <Grid Background="#FF00B809" Opacity="0.5"/>
+                    </Border>
+
+                    <Grid x:Name="BURNthreeEnemy_2" Style="{DynamicResource BURN}" Height="20" Width="20"/>
+
+                    <Grid x:Name="SLOWthreeEnemy_2" Style="{DynamicResource SLOW}" Width="20" Height="20"/>
+
+                    <Border x:Name="threeEnemiesBorder_2" BorderBrush="{Binding BorderColor}" BorderThickness="1.5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                        </Border.Background>
+                        <Grid>
+                            <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}"/>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="6*"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Style="{DynamicResource HP}" Height="35" Width="35"></Label>
+                                <Label Style="{DynamicResource Name}"></Label>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="threeEnemiesGrid_3" Style="{StaticResource EnemyGrid}" Height="200"
+                    VerticalAlignment="Center" Width="135" MouseLeftButtonUp="SelectThreeEnemies_3">
+
+                    <Label x:Name="STUNthreeEnemy_3" Style="{DynamicResource STUN}" Height="15" Width="35" FontSize="8"/>
+
+                    <Border x:Name="POISONthreeEnemy_3" Style="{DynamicResource POISON}" Height="20" Width="20">
+                        <Grid Background="#FF00B809" Opacity="0.5"/>
+                    </Border>
+
+                    <Grid x:Name="BURNthreeEnemy_3" Style="{DynamicResource BURN}" Height="20" Width="20"/>
+                    <Grid x:Name="SLOWthreeEnemy_3" Style="{DynamicResource SLOW}" Width="20" Height="20"/>
+
+                    <Border x:Name="threeEnemiesBorder_3" BorderBrush="{Binding BorderColor}" BorderThickness="1.5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding BorderFillColor}" Opacity="{Binding BorderOpacity}"/>
+                        </Border.Background>
+                        <Grid>
+                            <Rectangle Height="{Binding HPindicator}" Style="{DynamicResource HPindicator}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="6*"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Style="{DynamicResource HP}" Height="35" Width="35"></Label>
+                                <Label Style="{DynamicResource Name}"></Label>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <TextBlock HorizontalAlignment="Center" Margin="0,0,10,80" TextWrapping="Wrap" Text="vs" FontStyle="Italic"
+                       VerticalAlignment="Center" TextElement.FontFamily ="Resources/#Vinque" FontSize="130" Width="Auto"/>
+
+            <Grid x:Name="TURNgrid" HorizontalAlignment="Center" VerticalAlignment="Top"
+                  Margin="0,30,180,0" Height="50" Width="180">
+                <TextBlock Height="40" Width="120" TextElement.FontFamily ="Resources/#Vinque" FontSize="25" FontWeight="Bold" Text="TURA: "/>
+                <TextBlock Height="40" Width="50" TextElement.FontFamily ="Resources/#Vinque" FontSize="25" FontWeight="Bold" Text="{Binding Turn}" Margin="110,0,0,0"/>
+            </Grid>
+            <Grid x:Name="LEVELgrid" HorizontalAlignment="Center" VerticalAlignment="Top"
+                  Margin="195,30,0,0" Height="50" Width="140">
+                <TextBlock Height="40" Width="130" TextElement.FontFamily ="Resources/#Vinque" FontWeight="Bold" FontSize="25" Text="LEVEL: "/>
+                <TextBlock Height="40" Width="50" TextElement.FontFamily ="Resources/#Vinque" FontWeight="Bold" FontSize="25" Text="{Binding Level}" Margin="95,5,-32,5"/>
+            </Grid>
+
+            <Grid>
+                <Button x:Name="AttackButton" Content="Atakuj!" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Margin="0,150,0,0" FontSize="38" TextElement.FontFamily ="Resources/#Vinque" IsEnabled="False"
+                        Click="Attack_Click" FontStyle="Italic" FontWeight="Bold">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Ellipse Stroke="Black" StrokeThickness="5" Height="60" Width="180"
+                                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="#FFB04141" Offset="0.549"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,8,2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <Grid x:Name="DMGgrid" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Hidden"
+                  Height="240" Width="800" Margin="0,0,0,0">
+
+                <TextBlock TextAlignment="Center" FontFamily="Buxton Sketch" FontStyle="Italic" Margin="{Binding SkillIndicatorMarginB}"
+                           FontSize="{Binding Size}" Text="{Binding Text}" Foreground="{Binding DMGColour_1}"/>
+
+                <TextBlock TextAlignment="Center" FontFamily="Buxton Sketch" FontStyle="Italic" Margin="{Binding SkillIndicatorMarginA}"
+                           FontSize="{Binding Size}" Text="{Binding Text}" Foreground="{Binding DMGColour_2}"/>
+
+            </Grid>
+
+            <Grid x:Name="LevelUPMessageGrid" Style="{DynamicResource MessageGrid}" Visibility="Hidden">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="LevelUPMessage" Grid.Row="0" Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="48" TextElement.FontFamily ="Resources/#Vinque" Margin="0,0,0,30"
+                        VerticalAlignment="Bottom" FontWeight="Bold"/>
+
+                <Button Grid.Row="1" Style="{DynamicResource MessageButton}" Content="Kontynuuj" Margin="0,0,0,50" Click="LevelUPMessage_Click"></Button>
+
+                <Label x:Name="SkillInfo" Grid.Row="1" HorizontalAlignment="Left" Margin="120,0,0,160"
+                        VerticalAlignment="Bottom" FontSize="22" FontFamily="Sylfaen" FontWeight="Bold"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="PotionGrid" Width="250" Height="100" VerticalAlignment="Bottom"
+              Margin="50" Visibility="Visible">
+
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Background="White">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="SmallPotionGrid">
+                        <Button Style="{DynamicResource Potion}" Click="SmallPotion_Click"/>
+                    </Grid>
+
+                    <Grid x:Name="BigPotionGrid" Grid.Column="1">
+                        <Button Style="{DynamicResource Potion}" Margin="0,0,10,5" Click="BigPotion_Click"/>
+                    </Grid>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="ArtefactGrid" Height="800" Width="600" Visibility="Hidden">
+            <Border BorderThickness="5" BorderBrush="Wheat" Width="380" Height="450"
+                    VerticalAlignment="Top" CornerRadius="10" Margin="0,30,0,0">
+                <Border.Background>
+                    <ImageBrush ImageSource="Images/Background/weaponBackground.jpg"/>
+                </Border.Background>
+
+                <Grid>
+                    <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="48" TextElement.FontFamily ="Resources/#Neverwinter" Margin="0,0,0,0"
+                        VerticalAlignment="Top" FontWeight="Bold">Artefakt</TextBlock>
+                    <Grid Margin="0,50,0,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="{Binding SourceUri}"/>
+                        </Grid.Background>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Grid HorizontalAlignment="Center" Height="300" Visibility="Visible"
+                VerticalAlignment="Bottom" Width="500" Margin="0,0,0,50" >
+                <Grid.Background>
+                    <ImageBrush ImageSource="Images/Background/ramka.png"/>
+                </Grid.Background>
+
+                <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="38" TextElement.FontFamily ="Resources/#Vinque" Margin="0,80,0,0"
+                        VerticalAlignment="Top" FontWeight="Bold">Gratulacje!</TextBlock>
+                <TextBlock x:Name="ArtefactMessage" Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="24" TextElement.FontFamily ="Resources/#Vinque" Margin="10,0,0,130"
+                        VerticalAlignment="Bottom">Element artefaktu zdobyty!</TextBlock>
+
+                <Button Grid.Row="1" Style="{DynamicResource MessageButton}" Content="Kontynuuj" VerticalAlignment="Bottom" Margin="0,0,0,80" Click="ArtefactButton_Click"></Button>
+            </Grid>
+        </Grid>
+
+        <Grid Height="100" Width="50" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button x:Name="INFO" Click="INFO_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Polygon Stroke="Wheat" StrokeThickness="2" Points="0 0 50 10 50 90 0 100">
+                                <Polygon.Fill>
+                                    <ImageBrush ImageSource="Images/Background/buttonMessage.jpg"/>
+                                </Polygon.Fill>
+                            </Polygon>
+                            <TextBlock Margin="9,0,-12,-6" FontFamily="Sylfaen" FontWeight="Bold" FontSize="22"
+                                       VerticalAlignment="Bottom" HorizontalAlignment="Center"  Text="INFO">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="-90"/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <Grid Height="100" Width="50" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button x:Name="Menu" Click="Menu_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Polygon Stroke="Wheat" StrokeThickness="2" Points="50 100 50 0 0 10 0 90">
+                                <Polygon.Fill>
+                                    <ImageBrush ImageSource="Images/Background/buttonMessage.jpg"/>
+                                </Polygon.Fill>
+                            </Polygon>
+                            <TextBlock Margin="10,0,-26,-13" FontFamily="Sylfaen" FontWeight="Bold" FontSize="22"
+                                       VerticalAlignment="Bottom" HorizontalAlignment="Left"  Text="MENU" Width="80" Height="30">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="-90"/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="FeatureInfoGrid" Height="600" Width="650" Visibility="Hidden" Margin="0,0,0,100">
+            <Polygon Stroke="White" StrokeThickness="4" Points="50 0 600 0 650 50 650 550 600 600 50 600 0 550 0 50">
+                <Polygon.Fill>
+                    <ImageBrush ImageSource="Images/Background/backgoundC.png"/>
+                </Polygon.Fill>
+            </Polygon>
+            <Grid Height="500" Width="550">
+                <Border BorderBrush="Wheat" BorderThickness="4" CornerRadius="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Images/Background/buttonMessage.jpg"/>
+                    </Border.Background>
+                </Border>
+
+                <Grid x:Name="PortraitGridFeatureInfo" Height="350" Width="240" HorizontalAlignment="Right" Margin="0,0,45,0">
+                    <Border BorderBrush="Black" BorderThickness="2"></Border>
+                </Grid>
+
+                <Label x:Name="HeroNameFeatureInfo" Width="180" Height="70" VerticalAlignment="Top"
+                  Margin="45,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                   FontSize="30" FontFamily="Sylfaen" FontWeight="Bold"  HorizontalAlignment="Left"/>
+
+                <Label x:Name="ClassFeatureInfo" Width="250" Height="40" VerticalAlignment="Top"
+                  Margin="0,90,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                   FontSize="20" FontFamily="Sylfaen" FontWeight="Bold"  HorizontalAlignment="Left" />
+
+                <Button Style="{StaticResource MessageButton}" HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom" Margin="58,0,0,23" Content="Ekwipunek"
+                    Click="EquipmentButton_Click"/>
+
+                <Grid Height="270" Width="180" HorizontalAlignment="Left" Margin="45,50,0,0">
+                    <Border BorderBrush="Wheat" BorderThickness="2" CornerRadius="5">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FFCFB647" Offset="1"/>
+                                <GradientStop Color="#FFE4D596" Offset="0.389"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="CECHY" HorizontalContentAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Text="siła" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Text="wytrzymałość" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="3" Text="zwinność" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="4" Text="inteligencja" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="5" Text="HP" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="6" Text="KP" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="7" Text="szansa trafienia" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="8" Text="DMG min." Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="9" Text="DMG max." Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="10" Text="DMG [%]" Margin="0,4,0,0" FontFamily="Sylfaen" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="11" Text="liczba ataków" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+
+                        <Label Content="CECHY" HorizontalContentAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Strength}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Endurance}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Agility}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Intelligence}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding HP}" Margin ="0,0,32,0"  FontFamily="Sylfaen" TextAlignment="Right" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="/" Margin ="0,0,3,0"  FontFamily="Sylfaen" TextAlignment="Center" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding HP_MAX}" Margin ="28,0,0,0"  FontFamily="Sylfaen" TextAlignment="Left" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding KP}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding HitChanse}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding DMG_MIN}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="9" Grid.Column="1" Text="{Binding DMG_MAX}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding DMG_Buff}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding NumberAttacks_MAX}" Margin="0,3,0,0" TextAlignment="Center" FontFamily="Sylfaen" FontWeight="Bold"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Height="50" Width="240" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,45,15">
+                    <TextBlock Text="{Binding Experience}" Margin ="0,0,125,0"  FontFamily="Sylfaen" TextAlignment="Right" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text="/" FontFamily="Sylfaen" TextAlignment="Center" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Experience_MAX}" Margin ="125,0,0,0"  FontFamily="Sylfaen" TextAlignment="Left" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text="XP:" Margin ="30,0,0,0"  FontFamily="Sylfaen" TextAlignment="Left" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                </Grid>
+
+                <TextBlock Text="Poziom:" Width="120" Margin ="0,20,95,0"  FontFamily="Sylfaen" TextAlignment="Left"
+                       FontWeight="Bold" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <TextBlock Text="{Binding Level}" Width="20" Margin ="0,20,100,0"  FontFamily="Sylfaen" TextAlignment="Left"
+                       FontWeight="Bold" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            </Grid>
+            <Button Style="{StaticResource MessageButton}" HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom" Margin="60,0,0,10" Content="Wyjdź"
+                    Click="FeatureBack_Click"/>
+        </Grid>
+
+        <Grid x:Name="EQGrid" Width="1000" Height="550" Visibility="Hidden" Margin="0,0,0,50">
+
+            <Polygon Stroke="White" StrokeThickness="4" Points="80 0 920 0 1000 80 1000 470 920 550 80 550 0 470 0 80">
+                <Polygon.Fill>
+                    <ImageBrush ImageSource="Images/Background/backgoundC.png"/>
+                </Polygon.Fill>
+            </Polygon>
+
+            <Label Height="Auto" Width="Auto" Content="Ekwipunek" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   FontSize="42" Foreground="White" TextElement.FontFamily ="Resources/#Vinque" Margin="170,20,0,0"></Label>
+
+            <Grid x:Name="EQWeaponGrid" Width="500" Height="330" HorizontalAlignment="Left" Margin="40,0,0,0">
+                <Border BorderBrush="Wheat" BorderThickness="2" CornerRadius="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Images/Background/buttonMessage.jpg"/>
+                    </Border.Background>
+                </Border>
+                <Grid Width="250" HorizontalAlignment="Left" Margin="10">
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <ListView x:Name="LvWeapon" Margin="10">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="140" DisplayMemberBinding="{Binding Name}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="Nazwa" Tag="Nazwa" Click="lvNameColumnHeader_Click"></GridViewColumnHeader>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Type_Text}">
+                                        <GridViewColumnHeader Content="Rodzaj" Tag="Type_Text" Click="lvTypeColumnHeader_Click"></GridViewColumnHeader>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding DMG_MIN}">
+                                        <GridViewColumnHeader Content="DMG min." Tag="DMG_MIN" Click="lvDMG_MINColumnHeader_Click"></GridViewColumnHeader>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding DMG_MAX}">
+                                        <GridViewColumnHeader Content="DMG max." Tag="DMG_MAX" Click="lvDMG_MAXColumnHeader_Click"></GridViewColumnHeader>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding DMG_TYPE_Text}">
+                                        <GridViewColumnHeader Content="Typ obr." Tag="DMG_TYPE_Text" Click="lvDMG_TYPEColumnHeader_Click"></GridViewColumnHeader>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding SpeedTxt}">
+                                        <GridViewColumnHeader Content="Szybkość" Tag="Speed"></GridViewColumnHeader>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Features}">
+                                        <GridViewColumnHeader Content="Właściwości" Tag="Speed"></GridViewColumnHeader>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                                    <Setter Property="Foreground" Value="Black"></Setter>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                                    <Setter Property="FontFamily" Value="Sylfaen"></Setter>
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Images/Background/buttonMessage.jpg"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <Border Margin="1" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                                                    <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                  Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.7"/>
+                                            <Setter Property="BorderBrush" Value="Black" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </ScrollViewer>
+                </Grid>
+                <Grid x:Name="WeaponImageGrid" Height="150" Width="150" HorizontalAlignment="Right" Margin="0,0,45,100">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Background/weaponBackground.jpg"/>
+                    </Grid.Background>
+                    <Border BorderBrush="Wheat" BorderThickness="3">
+                        <Grid Margin="5">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="{Binding SourceUri}" />
+                            </Grid.Background>
+                        </Grid>
+                    </Border>
+                    <Button x:Name="SPECIAL" Click="SPECIAL_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid Margin="2.5">
+                                    <Polygon Stroke="Wheat" StrokeThickness="2" Points="110 0 130 0 150 20 150 40">
+                                        <Polygon.Fill>
+                                            <ImageBrush ImageSource="Images/Background/buttonMessage.jpg"/>
+                                        </Polygon.Fill>
+                                    </Polygon>
+                                    <TextBlock Margin="0,0,-11,135" FontFamily="Constantia" FontSize="8"
+                                               HorizontalAlignment="Right" Text="SPECIAL" Height="10">
+                                        <TextBlock.RenderTransform>
+                                            <TransformGroup>
+                                                <RotateTransform Angle="45"/>
+                                            </TransformGroup>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <TextBlock x:Name="SPECIALtext" Margin="10,30,0,0" FontFamily="Sylfaen" FontSize="11" VerticalAlignment="Top"
+                               HorizontalAlignment="Left" Height="80" Width="130">
+                    </TextBlock>
+                </Grid>
+
+                <Button x:Name="EQequipWeaponButton" Style="{StaticResource MessageButton}" Grid.Row="1" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="145,0,0,50" Content="Wyposaż"
+                    Width="100" Click="EQequipWeaponButton_Click"/>
+
+                <Button x:Name="EQdropWeaponButton" Style="{StaticResource MessageButton}" Grid.Row="1" HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom" Margin="0,0,12,50" Content="Upuść"
+                    Width="100" Click="EQdropWeaponButton_Click"/>
+
+                <Button Style="{StaticResource MessageButton}" Grid.Row="1" HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom" Margin="0,0,12,12" Content="Akceptuj"
+                    Width="100" Height="25" Click="EQacceptButton_Click"/>
+            </Grid>
+
+            <Border BorderThickness="5" BorderBrush="Wheat" Width="380" Height="450"
+                    CornerRadius="10" Margin="0,0,55,0" HorizontalAlignment="Right">
+                <Border.Background>
+                    <ImageBrush ImageSource="Images/Background/weaponBackground.jpg"/>
+                </Border.Background>
+
+                <Grid x:Name="EQartefactGrid">
+                    <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="48" FontFamily="Neverwinter" Margin="0,0,0,0"
+                        VerticalAlignment="Top" FontWeight="Bold">Artefakt</TextBlock>
+                    <Grid Margin="0,50,0,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="{Binding SourceUri}"/>
+                        </Grid.Background>
+
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Button Style="{StaticResource MessageButton}" HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom" Margin="100,0,0,35" Content="Wyjdź"
+                    Width="150" Height="40" FontSize="20" Click="EQbackButton_Click"/>
+        </Grid>
+
+        <Grid x:Name="DropGrid" Width="250" Height="250" Margin="0,200,0,0" Visibility="Hidden">
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding SourceUri}"/>
+            </Grid.Background>
+        </Grid>
+
+
+        <Grid x:Name="WeaponSlotsGrid" Width="260" Height="70" HorizontalAlignment="Left"
+              VerticalAlignment="Bottom" Margin="210,0,0,50">
+            <Border BorderBrush="Wheat" CornerRadius="10" BorderThickness="2">
+                <Border.Background>
+                    <ImageBrush ImageSource="Images/Background/elementA.jpg"/>
+                </Border.Background>
+            </Border>
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="EQslotGRID_1" Grid.Column="0">
+                    <Border x:Name="EQslotBORDER_1" Style="{StaticResource AssignBorder}">
+                        <Button x:Name="EQslot_1" Click="EQslot_1_Click" Style="{DynamicResource AssignButton}"></Button>
+                    </Border>
+                    <TextBlock x:Name="AssignEQSlot_1" Style="{DynamicResource AssignClickText}" Visibility="Hidden"/>
+                </Grid>
+                <Grid x:Name="EQslotGRID_2" Grid.Column="1">
+                    <Border x:Name="EQslotBORDER_2" Style="{StaticResource AssignBorder}">
+                        <Button x:Name="EQslot_2" Click="EQslot_2_Click" Style="{DynamicResource AssignButton}"></Button>
+                    </Border>
+                    <TextBlock x:Name="AssignEQSlot_2" Style="{DynamicResource AssignClickText}" Visibility="Hidden"/>
+                </Grid>
+                <Grid x:Name="EQslotGRID_3" Grid.Column="2">
+                    <Border x:Name="EQslotBORDER_3" Style="{StaticResource AssignBorder}">
+                        <Button x:Name="EQslot_3" Click="EQslot_3_Click" Style="{DynamicResource AssignButton}"></Button>
+                    </Border>
+                    <TextBlock x:Name="AssignEQSlot_3" Style="{DynamicResource AssignClickText}" Visibility="Hidden"/>
+                </Grid>
+                <Grid x:Name="EQslotGRID_4" Grid.Column="3">
+                    <Border x:Name="EQslotBORDER_4" Style="{StaticResource AssignBorder}">
+                        <Button x:Name="EQslot_4" Click="EQslot_4_Click" Style="{DynamicResource AssignButton}"></Button>
+                    </Border>
+                    <TextBlock x:Name="AssignEQSlot_4" Style="{DynamicResource AssignClickText}" Visibility="Hidden"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MenuGrid" Height="400" Width="350" Visibility="Hidden">
+            <Polygon Stroke="White" StrokeThickness="10" Points="60 0 290 0 350 60 350 340 290 400 60 400 0 340 0 60">
+                <Polygon.Fill>
+                    <ImageBrush ImageSource="Images/Background/menu.png"/>
+                </Polygon.Fill>
+            </Polygon>
+            <Button x:Name="Continue" Style="{StaticResource ControlButton}" Content="Kontynuuj" FontSize="45"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,100,0,0"
+                    FontWeight="Bold" Foreground="Black" Click="Continue_Click"></Button>
+            <Button x:Name="MainMenu" Style="{StaticResource ControlButton}" Content="Menu" FontSize="45"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0"
+                    FontWeight="Bold" Foreground="Black" Click="MainMenu_Click"></Button>
+            <Button x:Name="End" Style="{StaticResource ControlButton}" Content="Koniec" FontSize="45"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,80"
+                    FontWeight="Bold" Foreground="Black" Click="End_Click"></Button>
+        </Grid>
+
+        <Grid x:Name="DeathMessage" HorizontalAlignment="Center" Height="400"
+              Visibility="Hidden" VerticalAlignment="Center" Width="670">
+            <Grid.Background>
+                <ImageBrush ImageSource="Images/Background/ramka.png"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Foreground="Black" TextWrapping="Wrap" TextAlignment="Center"
+                       FontSize="52" FontFamily="Neverwinter" Margin="0,0,0,30"
+                        VerticalAlignment="Bottom" Text="Zabili Cie.."/>
+
+
+            <Button x:Name="ResurrectionButton" Grid.Row="1"  Style="{StaticResource MessageButton}"
+                    VerticalAlignment="Bottom" Content="ekhm.. wskrześ :)"  Margin="200,0,0,130"
+                    Click="ResurrectionButton_Click">
+            </Button>
+
+            <Button x:Name="DeathMessage_End" Grid.Row="1"  Style="{StaticResource MessageButton}"
+                    VerticalAlignment="Bottom" Content="Koniec"  Margin="0,0,200,130"
+                    Click="DeathMessage_End_Click">
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

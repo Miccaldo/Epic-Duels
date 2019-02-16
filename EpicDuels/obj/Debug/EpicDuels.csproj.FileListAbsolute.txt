@@ -1,0 +1,57 @@
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csprojResolveAssemblyReference.cache
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Creators.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Game.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\MainWindow.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Map.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Scores.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\SelectHero.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\App.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels_MarkupCompile.cache
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels_MarkupCompile.lref
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\bin\Debug\EpicDuels.exe.config
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\bin\Debug\EpicDuels.exe
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\bin\Debug\EpicDuels.pdb
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\App.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Creators.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Game.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\MainWindow.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Map.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Scores.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\SelectHero.baml
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.g.resources
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.Properties.Resources.resources
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csproj.GenerateResource.Cache
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.exe
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.pdb
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\Interop.WMPLib.dll
+C:\Users\HP\Documents\Visual Studio 2017\Projects\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csproj.ResolveComReference.cache
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Interop.WMPLib.dll
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csproj.ResolveComReference.cache
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Creators.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Game.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\MainWindow.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Map.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Scores.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\SelectHero.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\App.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels_MarkupCompile.cache
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels_MarkupCompile.lref
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csprojAssemblyReference.cache
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\bin\Debug\EpicDuels.exe.config
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\bin\Debug\EpicDuels.exe
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\bin\Debug\EpicDuels.pdb
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\App.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Creators.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Game.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\MainWindow.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Map.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\Scores.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\SelectHero.baml
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.g.resources
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.Properties.Resources.resources
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csproj.GenerateResource.cache
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.csproj.CoreCompileInputs.cache
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.exe
+C:\workspace\workspace_C#\EpicDuels\EpicDuels\obj\Debug\EpicDuels.pdb

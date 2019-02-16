@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5138B598-9A0F-40FD-B3B6-3AE55983B940}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>EpicDuels</RootNamespace>
+    <AssemblyName>EpicDuels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Class\Base.cs" />
+    <Compile Include="Class\CHARACTER\Character.cs" />
+    <Compile Include="Class\CHARACTER\CyclicDisease.cs" />
+    <Compile Include="Class\CHARACTER\Disease.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\Bat.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\Horror.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\Hydra.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\Observer.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\Ogre.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\RockWarrior.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cave\UndergroundSpider.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\Ghoul.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\GrimReaper.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\Skeleton.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\SpiderQueen.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\UndeadDragon.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\UndeadMinotaur.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Cemetary\Zombie.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\Enemy.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\FieryLizard.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\FireElemental.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\Glimmer.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\Ifrit.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\NightMare.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\Phoenix.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\FieryLands\Tormentor.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\GlacierDriade.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\IceDragon.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\IceElemental.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\IceGolem.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\IceWolf.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\Kobold.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\IceLand\LessIce.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Bandit.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Bear.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Druid.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Ent.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Spider.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Unicorn.cs" />
+    <Compile Include="Class\CHARACTER\ENEMY\MagicForest\Wolf.cs" />
+    <Compile Include="Class\CHARACTER\Feature.cs" />
+    <Compile Include="Class\CHARACTER\Hero\Hero.cs" />
+    <Compile Include="Class\CHARACTER\Hero\Mage.cs" />
+    <Compile Include="Class\CHARACTER\Hero\Thief.cs" />
+    <Compile Include="Class\CHARACTER\Hero\Warrior.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\AoE.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\BloodSucking.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\Burn.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\NormalAttack.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\Poison.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\Slow.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\StrongerBlow.cs" />
+    <Compile Include="Class\CHARACTER\Skills\AttackSkill\Stun.cs" />
+    <Compile Include="Class\CHARACTER\Skills\DefenseSkill\Amok.cs" />
+    <Compile Include="Class\CHARACTER\Skills\DefenseSkill\Cure.cs" />
+    <Compile Include="Class\CHARACTER\Skills\DefenseSkill\Heal.cs" />
+    <Compile Include="Class\CHARACTER\Skills\DefenseSkill\MirrorImage.cs" />
+    <Compile Include="Class\CHARACTER\Skills\DefenseSkill\VampirePower.cs" />
+    <Compile Include="Class\CHARACTER\Skills\Skill.cs" />
+    <Compile Include="Class\CHARACTER\Skills\SkillSize.cs" />
+    <Compile Include="Class\ClassArgs.cs" />
+    <Compile Include="Class\DMGindicator.cs" />
+    <Compile Include="Class\EQUIPMENT\EQslot.cs" />
+    <Compile Include="Class\EQUIPMENT\Equipment.cs" />
+    <Compile Include="Class\EQUIPMENT\Item.cs" />
+    <Compile Include="Class\EQUIPMENT\Potion.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\Artefact.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\AXE\Axe.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\AXE\DruidDefender.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\AXE\Flame.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\AXE\OgreTooth.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\AXE\WrathOfWinter.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\DAGGER\Dagger.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\DAGGER\DaggerOfVenom.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\DAGGER\IceIcicle.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\DAGGER\LifeThief.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\DAGGER\StoneSpike.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\STAFF\ShooterForest.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\STAFF\EarthStaff.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\STAFF\IceGem.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\STAFF\Spectrum.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\ARTEFACT\STAFF\Staff.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\Hammer.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\Mace.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\Melee.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\Spear.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\Sword.cs" />
+    <Compile Include="Class\EQUIPMENT\WEAPON\Weapon.cs" />
+    <Compile Include="Class\ImageUri.cs" />
+    <Compile Include="Class\LOCATION\Cave.cs" />
+    <Compile Include="Class\LOCATION\Cemetary.cs" />
+    <Compile Include="Class\LOCATION\FieryLands.cs" />
+    <Compile Include="Class\LOCATION\IceLand.cs" />
+    <Compile Include="Class\LOCATION\Location.cs" />
+    <Compile Include="Class\LOCATION\MagicForest.cs" />
+    <Compile Include="Class\SELECT\Select.cs" />
+    <Compile Include="Class\SELECT\SelectEnemy.cs" />
+    <Compile Include="Class\SELECT\SelectSkill.cs" />
+    <Compile Include="Class\SELECT\SelectWeaponAssignment.cs" />
+    <Compile Include="Class\SELECT\SelectWeapon.cs" />
+    <Compile Include="Class\SORT\Sort.cs" />
+    <Compile Include="Class\SORT\SortByName.cs" />
+    <Compile Include="Class\SORT\SortByNumber.cs" />
+    <Compile Include="Creators.xaml.cs">
+      <DependentUpon>Creators.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game.xaml.cs">
+      <DependentUpon>Game.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Map.xaml.cs">
+      <DependentUpon>Map.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scores.xaml.cs">
+      <DependentUpon>Scores.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectHero.xaml.cs">
+      <DependentUpon>SelectHero.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Creators.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Map.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectHero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Images\Background\Artefact\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\CM_Artefact\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\CV_Artefact\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\IL_Artefact\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv10\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv11\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv12\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv1\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv2\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv3\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv4\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv5\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv6\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv7\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv8\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Lv9\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\MF_Artefact\Thumbs.db" />
+    <None Include="Images\Equipment\Weapon\Thumbs.db" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\vinque.ttf" />
+    <Resource Include="Resources\NEVERWINTER.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Hero\0.jpg" />
+    <Resource Include="Images\Hero\1.jpg" />
+    <Resource Include="Images\Hero\10.jpg" />
+    <Resource Include="Images\Hero\11.jpg" />
+    <Resource Include="Images\Hero\12.jpg" />
+    <Resource Include="Images\Hero\13.jpg" />
+    <Resource Include="Images\Hero\14.jpg" />
+    <Resource Include="Images\Hero\2.jpg" />
+    <Resource Include="Images\Hero\3.jpg" />
+    <Resource Include="Images\Hero\4.jpg" />
+    <Resource Include="Images\Hero\5.jpg" />
+    <Resource Include="Images\Hero\6.jpg" />
+    <Resource Include="Images\Hero\7.jpg" />
+    <Resource Include="Images\Hero\8.jpg" />
+    <Resource Include="Images\Hero\9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\IceLand\mapIceLand.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\Cemetary\1.jpg" />
+    <Resource Include="Images\Location\Cemetary\2.jpg" />
+    <Resource Include="Images\Location\Cemetary\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\Cave\1.jpg" />
+    <Resource Include="Images\Location\Cave\2.jpg" />
+    <Resource Include="Images\Location\Cave\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\MagicForest\bear.jpg" />
+    <Resource Include="Images\Enemy\MagicForest\ent.jpg" />
+    <Resource Include="Images\Enemy\MagicForest\thief.jpg" />
+    <Resource Include="Images\Enemy\MagicForest\unicorn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\IceLand\iceGolem.jpg" />
+    <Resource Include="Images\Enemy\IceLand\iceWolf.jpg" />
+    <Resource Include="Images\Enemy\IceLand\kobold.jpg" />
+    <Resource Include="Images\Enemy\IceLand\Lodzik.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\Cemetary\ghoul.jpg" />
+    <Resource Include="Images\Enemy\Cemetary\grimReaper.jpg" />
+    <Resource Include="Images\Enemy\Cemetary\Minotaur.jpg" />
+    <Resource Include="Images\Enemy\Cemetary\skeleton.jpg" />
+    <Resource Include="Images\Enemy\Cemetary\undeadDragon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\Cave\bat.jpg" />
+    <Resource Include="Images\Enemy\Cave\hydra.jpg" />
+    <Resource Include="Images\Enemy\Cave\ogre.jpg" />
+    <Resource Include="Images\Enemy\Cave\spider.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\MagicForest\2.jpg" />
+    <Resource Include="Images\Location\MagicForest\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\IceLand\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\IceLand\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\IceLand\2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\Cave\rockWarrior.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\Cemetary\spiderQueen.jpg" />
+    <Resource Include="Images\Enemy\Cemetary\zombie.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\IceLand\glacierDriade.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\MagicForest\druid.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\MagicForest\spider.jpg" />
+    <Resource Include="Images\Enemy\MagicForest\wolf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\IceLand\iceDragon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\IceLand\iceElemental.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\Cave\horror.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\Cave\mapCave.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\Cemetary\mapCemetary.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\MagicForest\mapMagicForest.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\BigPotion.png" />
+    <Resource Include="Images\Background\buttonMessage.jpg" />
+    <Resource Include="Images\Background\cardLevel.jpg" />
+    <Resource Include="Images\Background\cardLevelB.jpg" />
+    <Resource Include="Images\Background\cardName.jpg" />
+    <Resource Include="Images\Background\elementA.jpg" />
+    <Resource Include="Images\Background\mainWindow.jpg" />
+    <Resource Include="Images\Background\mapBackground.jpg" />
+    <Resource Include="Images\Background\potion.png" />
+    <Resource Include="Images\Background\ramka.png" />
+    <Resource Include="Images\Background\tloB.jpg" />
+    <Resource Include="Images\Background\tloC.jpg" />
+    <Resource Include="Images\Background\tloD.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\poison.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\burn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\slow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\Cave\observer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\weaponBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\MagicForest\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Location\FieryLands\1.jpg" />
+    <Resource Include="Images\Location\FieryLands\2.jpg" />
+    <Resource Include="Images\Location\FieryLands\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemy\FieryLands\fieryLizard.jpg" />
+    <Resource Include="Images\Enemy\FieryLands\fireElemental.png" />
+    <Resource Include="Images\Enemy\FieryLands\glimmer.jpg" />
+    <Resource Include="Images\Enemy\FieryLands\ifrit.jpg" />
+    <Resource Include="Images\Enemy\FieryLands\nightMare.jpg" />
+    <Resource Include="Images\Enemy\FieryLands\phoenix.jpg" />
+    <Resource Include="Images\Enemy\FieryLands\tormentor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\oldPaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\Artefact\cuirass.png" />
+    <Resource Include="Images\Background\Artefact\cuirassGloves.png" />
+    <Resource Include="Images\Background\Artefact\cuirassGreaves.png" />
+    <Resource Include="Images\Background\Artefact\cuirassGreavesBoots.png" />
+    <Resource Include="Images\Background\Artefact\cuirassGreavesGloves.png" />
+    <Resource Include="Images\Background\Artefact\cuirassGreavesGlovesBoots.png" />
+    <Resource Include="Images\Background\Artefact\greaves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\Artefact\artefactBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\Artefact\fullArmor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\cursor.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 i x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\featureBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\arrowLeft.png" />
+    <Resource Include="Images\Background\arrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\backgoundC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Equipment\Weapon\CM_Artefact\CemetaryAxe_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\CM_Artefact\CemetaryDagger_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\CM_Artefact\CemetaryStaff_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\CV_Artefact\CaveAxe_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\CV_Artefact\CaveDagger_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\CV_Artefact\CaveStaff_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\IL_Artefact\IceLandAxe_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\IL_Artefact\IceLandDagger_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\IL_Artefact\IceLandStaff_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\MF_Artefact\MagicForestAxe_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\MF_Artefact\MagicForestDagger_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\MF_Artefact\MagicForestStaff_Lv4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Equipment\Weapon\Lv10\Hammer_Lv10.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv10\Spear_Lv10.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv10\Sword_Lv10.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv11\Hammer_Lv11.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv11\Spear_Lv11.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv11\Sword_Lv11.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv12\Hammer_Lv12.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv12\Spear_Lv12.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv12\Sword_Lv12.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv1\Mace_Lv1.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv1\Spear_Lv1.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv1\Sword_Lv1.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv2\Mace_Lv2.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv2\Spear_Lv2.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv2\Sword_Lv2.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv3\Mace_Lv3.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv3\Spear_Lv3.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv3\Sword_Lv3.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv4\Hammer_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv4\Spear_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv4\Sword_Lv4.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv5\Hammer_Lv5.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv5\Spear_Lv5.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv5\Sword_Lv5.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv6\Hammer_Lv6.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv6\Spear_Lv6.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv6\Sword_Lv6.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv7\Hammer_Lv7.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv7\Spear_Lv7.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv7\Sword_Lv7.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv8\Mace_Lv8.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv8\Spear_Lv8.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv8\Sword_Lv8.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv9\Hammer_Lv9.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv9\Spear_Lv9.png" />
+    <Resource Include="Images\Equipment\Weapon\Lv9\Sword_Lv9.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
